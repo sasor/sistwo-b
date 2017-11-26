@@ -8,3 +8,12 @@ php artisan make:migration create_refresco_table --create=refresco
 php artisan make:migration create_pedido_table --create=pedido
 php artisan make:migration create_pedido_refresco_table --create=pedido_refresco
 php artisan make:migration create_pedido_plato_table --create=pedido_plato
+
+php artisan make:model Pollo
+php artisan make:model Cliente
+php artisan make:model Plato
+php artisan make:model Ticket
+php artisan make:model Refresco
+php artisan make:model CategoriaRefresco
+php artisan make:model TipoRefresco
+php artisan make:model Pedido
