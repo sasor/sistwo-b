@@ -1,0 +1,10 @@
+php artisan make:migration create_pollo_table --create=pollo
+php artisan make:migration create_plato_table --create=plato
+php artisan make:migration create_cliente_table --create=cliente
+php artisan make:migration create_ticket_table --create=ticket
+php artisan make:migration create_categoria_refresco_table --create=categoria_refresco
+php artisan make:migration create_tipo_refresco_table --create=tipo_refresco
+php artisan make:migration create_refresco_table --create=refresco
+php artisan make:migration create_pedido_table --create=pedido
+php artisan make:migration create_pedido_refresco_table --create=pedido_refresco
+php artisan make:migration create_pedido_plato_table --create=pedido_plato
