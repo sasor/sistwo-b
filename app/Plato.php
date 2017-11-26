@@ -17,4 +17,9 @@ class Plato extends Model
         'descripcion',
         'imagen'
     ];
+
+    public function pedidos()
+    {
+        return $this->belongsToMany('App\Pedido');
+    }
 }

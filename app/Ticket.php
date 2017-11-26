@@ -11,4 +11,9 @@ class Ticket extends Model
     public $timestamps = false;
 
     protected $fillable = ['numero_pedido'];
+    
+    public function pedido()
+    {
+        return $this->belongsTo('App\Pedido');
+    }
 }

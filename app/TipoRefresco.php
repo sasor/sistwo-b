@@ -11,4 +11,9 @@ class TipoRefresco extends Model
     public $timestamps = false;
 
     protected $fillable = ['nombre', 'imagen'];
+
+    public function refrescos()
+    {
+        return $this->hasMany('App\Refresco');
+    }
 }

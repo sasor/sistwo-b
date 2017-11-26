@@ -16,4 +16,19 @@ class Refresco extends Model
         'precio',
         'cantidad_unidades'
     ];
+
+    public function categoria_refresco()
+    {
+        return $this->belongsTo('App\CategoriaRefresco');
+    }
+
+    public function tipo_refresco()
+    {
+        return $this->belongsTo('App\TipoRefresco');
+    }
+
+    public function pedidos()
+    {
+        return $this->belongsToMany('App\Pedido');
+    }
 }

@@ -11,4 +11,9 @@ class Cliente extends Model
     public $timestamps = false;
 
     protected $fillable = ['codigo', 'cliente'];
+
+    public function pedidos()
+    {
+        return $this->hasMany('App\Pedido');
+    }
 }
