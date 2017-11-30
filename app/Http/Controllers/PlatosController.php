@@ -96,6 +96,12 @@ class PlatosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \App\Plato::find($id)->delete();
+        return Response::json(
+            [
+                'msj' => 'Plato eliminado correctamente',
+                'id'=> $id
+            ], 200
+        ); 
     }
 }
