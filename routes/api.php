@@ -20,4 +20,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['middleware' => ['cors']], function () {
     Route::resource('platos', 'PlatosController');
     Route::resource('pollos', 'PolloController');
+    Route::prefix('refrescos')->group(function () {
+        Route::resource('r', 'RefrescoController');
+        Route::resource('categorias', 'CategoriaRefrescoController');
+        Route::resource('tipos', 'TipoRefrescoController');
+    });
 });
