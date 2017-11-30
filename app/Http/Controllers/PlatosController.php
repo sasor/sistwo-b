@@ -36,7 +36,22 @@ class PlatosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $plato = new \App\Plato;
+        $plato->nombre = $request->input('nombre');
+        $plato->precio = $request->input('precio');
+        $plato->porcion = $request->input('porcion');
+        $plato->descripcion = $request->input('descripcion');
+        // imagen es de tipo array filename, filetype, value
+        $imagen = $request->input('imagen');
+        $plato->imagen = $imagen['value'];
+        $plato->save();
+
+        return Response::json(
+            [
+                'msj' => 'Imagen creada correctamente',
+                'data'=> $plato
+            ], 201
+        ); 
     }
 
     /**
