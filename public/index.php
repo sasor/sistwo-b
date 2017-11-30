@@ -23,7 +23,8 @@ define('LARAVEL_START', microtime(true));
 
 $allowedOrigins = [
     'http://localhost:4200',
-    'http://sistwo-b.com'
+    'http://sistwo-b.com',
+    'http://sistwo.scesi.org'
 ];
 
 if (isset($_SERVER['HTTP_ORIGIN']) &&  $_SERVER['HTTP_ORIGIN'] != "") {
