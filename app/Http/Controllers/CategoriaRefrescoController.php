@@ -36,7 +36,17 @@ class CategoriaRefrescoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categoria = new \App\CategoriaRefresco;
+        $categoria->nombre = $request->input('nombre');
+        $categoria->contenido = $request->input('contenido');
+        $categoria->save();
+
+        return Response::json(
+            [
+                'msj' => 'Categoria creada correctamente',
+                'data'=> $categoria
+            ], 201
+        ); 
     }
 
     /**
@@ -81,6 +91,12 @@ class CategoriaRefrescoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \App\CategoriaRefresco::find($id)->delete();
+        return Response::json(
+            [
+                'msj' => 'Categoria eliminada correctamente',
+                'id'=> $id
+            ], 200
+        ); 
     }
 }

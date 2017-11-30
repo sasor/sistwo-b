@@ -36,7 +36,19 @@ class TipoRefrescoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tipo = new \App\TipoRefresco;
+        $tipo->nombre = $request->input('nombre');
+        // imagen es de tipo array filename, filetype, value
+        $imagen = $request->input('imagen');
+        $tipo->imagen = "data:{$imagen['filetype']};base64,{$imagen['value']}";
+        $tipo->save();
+
+        return Response::json(
+            [
+                'msj' => 'Tipo de Refresco creado correctamente',
+                'data'=> $tipo
+            ], 201
+        ); 
     }
 
     /**
@@ -81,6 +93,12 @@ class TipoRefrescoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \App\TipoRefresco::find($id)->delete();
+        return Response::json(
+            [
+                'msj' => 'Tipo de Refresco eliminada correctamente',
+                'id'=> $id
+            ], 200
+        ); 
     }
 }

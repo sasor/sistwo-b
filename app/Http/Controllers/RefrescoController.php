@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class RefrescoController extends Controller
 {
@@ -13,7 +14,20 @@ class RefrescoController extends Controller
      */
     public function index()
     {
-        //
+        $refrescos = \App\Refresco::all();
+        $data = [];
+        foreach ($refrescos as $refresco) {
+            $categoria_nombre = $refresco->categoria_refresco->nombre;
+            $tipo_nombre = $refresco->tipo_refresco->nombre;
+            array_push($data, [
+                'id' => $refresco->id,
+                'nombre' => $tipo_nombre,
+                'precio' => $refresco->precio,
+                'cantidad' => $refresco->cantidad_unidades,
+                'categoria' => $categoria_nombre
+            ]);
+        }
+        return Response::json($data, 200);
     }
 
     /**
@@ -34,7 +48,19 @@ class RefrescoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $refresco = new \App\Refresco;
+        $refresco->categoria_refresco_id = $request->input('categoria_refresco_id');
+        $refresco->tipo_refresco_id = $request->input('tipo_refresco_id');
+        $refresco->precio = $request->input('precio');
+        $refresco->cantidad_unidades = $request->input('cantidad_unidades');
+        $refresco->save();
+
+        return Response::json(
+            [
+                'msj' => 'Refresco creado exitosamente',
+                'data'=> $refresco
+            ], 201
+        ); 
     }
 
     /**
@@ -79,6 +105,12 @@ class RefrescoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \App\Refresco::find($id)->delete();
+        return Response::json(
+            [
+                'msj' => 'Refresco eliminado correctamente',
+                'id'=> $id
+            ], 200
+        ); 
     }
 }
