@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
-class PlatosController extends Controller
+class PolloController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class PlatosController extends Controller
      */
     public function index()
     {
-        $platos = \App\Plato::all();
-        return Response::json($platos, 200);
+        $cantidad_porciones = \App\Pollo::all();
+        return Response::json($cantidad_porciones, 200);
     }
 
     /**
@@ -36,20 +36,17 @@ class PlatosController extends Controller
      */
     public function store(Request $request)
     {
-        $plato = new \App\Plato;
-        $plato->nombre = $request->input('nombre');
-        $plato->precio = $request->input('precio');
-        $plato->porcion = $request->input('porcion');
-        $plato->descripcion = $request->input('descripcion');
-        // imagen es de tipo array filename, filetype, value
-        $imagen = $request->input('imagen');
-        $plato->imagen = $imagen['value'];
-        $plato->save();
+        $pollo = new \App\Pollo;
+        $cantidad_porciones = $request->input('cantidad_porciones');
+        $pollo->cantidad_porciones = ($cantidad_porciones*8);
+        $pollo->fecha = $request->input('fecha');
+
+        $pollo->save();
 
         return Response::json(
             [
-                'msj' => 'Plato creada correctamente',
-                'data'=> $plato
+                'msj' => 'Cantidad Pollo creada correctamente',
+                'data'=> $pollo
             ], 201
         ); 
     }
@@ -96,12 +93,6 @@ class PlatosController extends Controller
      */
     public function destroy($id)
     {
-        \App\Plato::find($id)->delete();
-        return Response::json(
-            [
-                'msj' => 'Plato eliminado correctamente',
-                'id'=> $id
-            ], 200
-        ); 
+        //
     }
 }
