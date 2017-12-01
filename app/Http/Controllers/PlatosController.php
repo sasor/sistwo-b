@@ -43,7 +43,7 @@ class PlatosController extends Controller
         $plato->descripcion = $request->input('descripcion');
         // imagen es de tipo array filename, filetype, value
         $imagen = $request->input('imagen');
-        $plato->imagen = $imagen['value'];
+        $plato->imagen = "data:{$imagen['filetype']};base64,{$imagen['value']}";
         $plato->save();
 
         return Response::json(
