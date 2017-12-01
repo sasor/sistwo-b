@@ -10,7 +10,7 @@ class Ticket extends Model
     protected $primaryKey = 'id';
     public $timestamps = false;
 
-    protected $fillable = ['numero_pedido'];
+    protected $fillable = ['numero_pedido', 'total'];
     
     public function pedido()
     {

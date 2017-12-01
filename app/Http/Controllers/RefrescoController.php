@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\DB;
 
 class RefrescoController extends Controller
 {
@@ -27,7 +28,15 @@ class RefrescoController extends Controller
                 'categoria' => $categoria_nombre
             ]);
         }
+        /*$out = DB::select("select categoria, array_agg(tipos) from (select id,
+categoria_refresco_id, tipo_refresco_id from refresco order by tipo_refresco_id)
+as tab (id,categoria,tipos) group by categoria order by categoria");*/
+        /*$out = DB::select("select categoria_refresco_id as categoria,
+string_to_array(string_agg(tipo_refresco_id::text, ','), ',') as
+tipos from refresco group by categoria_refresco_id order by
+categoria_refresco_id");*/
         return Response::json($data, 200);
+        
     }
 
     /**

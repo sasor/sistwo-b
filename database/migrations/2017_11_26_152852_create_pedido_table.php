@@ -16,7 +16,9 @@ class CreatePedidoTable extends Migration
         Schema::create('pedido', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('cliente_id');
-
+            $table->date('fecha_pedido');
+            $table->time('hora_pedido');
+            
             $table->foreign('cliente_id')
                   ->references('id')
                   ->on('cliente');

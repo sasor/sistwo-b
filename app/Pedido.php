@@ -10,7 +10,7 @@ class Pedido extends Model
     protected $primaryKey = 'id';
     public $timestamps = false;
 
-    protected $fillable = ['cliente_id'];
+    protected $fillable = ['cliente_id', 'fecha_pedido', 'hora_pedido'];
 
     public function cliente()
     {
