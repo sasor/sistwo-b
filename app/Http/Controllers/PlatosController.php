@@ -62,7 +62,8 @@ class PlatosController extends Controller
      */
     public function show($id)
     {
-        //
+        $plato = \App\Plato::find($id);
+        return Response::json($plato, 200);
     }
 
     /**
@@ -85,7 +86,22 @@ class PlatosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $plato = \App\Plato::find($id);
+        $plato->nombre = $request->input('nombre');
+        $plato->precio = $request->input('precio');
+        $plato->porcion = $request->input('porcion');
+        $plato->descripcion = $request->input('descripcion');
+        // imagen es de tipo array filename, filetype, value
+        $imagen = $request->input('imagen');
+        $plato->imagen = "data:{$imagen['filetype']};base64,{$imagen['value']}";
+        $plato->save();
+
+        return Response::json(
+            [
+                'msj' => 'Plato actualizado correctamente',
+                'data'=> $plato
+            ], 201
+        ); 
     }
 
     /**
